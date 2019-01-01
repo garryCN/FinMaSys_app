@@ -77,6 +77,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lblTotalAmount = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -107,7 +109,7 @@
             this.groupBox1.Location = new System.Drawing.Point(13, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(529, 386);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "发票基本信息";
             // 
@@ -277,7 +279,7 @@
             this.groupBox2.Location = new System.Drawing.Point(570, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(502, 213);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "销售方基本信息";
             // 
@@ -381,7 +383,7 @@
             this.label6.Location = new System.Drawing.Point(430, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 18);
-            this.label6.TabIndex = 0;
+            this.label6.TabIndex = 1;
             this.label6.Text = "发票类型";
             // 
             // cbBInvType
@@ -400,7 +402,7 @@
             this.label11.Location = new System.Drawing.Point(840, 24);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 18);
-            this.label11.TabIndex = 0;
+            this.label11.TabIndex = 2;
             this.label11.Text = "税率";
             // 
             // tBTax
@@ -430,7 +432,7 @@
             this.btSave.Location = new System.Drawing.Point(946, 403);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(120, 38);
-            this.btSave.TabIndex = 3;
+            this.btSave.TabIndex = 6;
             this.btSave.Text = "保存并新增";
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
@@ -440,7 +442,7 @@
             this.btnEmpty.Location = new System.Drawing.Point(819, 403);
             this.btnEmpty.Name = "btnEmpty";
             this.btnEmpty.Size = new System.Drawing.Size(120, 38);
-            this.btnEmpty.TabIndex = 3;
+            this.btnEmpty.TabIndex = 7;
             this.btnEmpty.Text = "清空";
             this.btnEmpty.UseVisualStyleBackColor = true;
             this.btnEmpty.Click += new System.EventHandler(this.btnEmpty_Click);
@@ -455,7 +457,7 @@
             this.groupBox3.Location = new System.Drawing.Point(570, 286);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(502, 113);
-            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "附加信息";
             // 
@@ -534,34 +536,57 @@
             this.Column1.HeaderText = "发票号";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 91;
+            this.Column1.Width = 98;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "金额";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 75;
+            this.Column2.Width = 80;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "税额";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 75;
+            this.Column3.Width = 80;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "价税合计";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 91;
+            this.Column4.Width = 116;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(45, 748);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(170, 18);
+            this.label19.TabIndex = 10;
+            this.label19.Text = "发票价税合计金额：";
+            // 
+            // lblTotalAmount
+            // 
+            this.lblTotalAmount.AutoSize = true;
+            this.lblTotalAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalAmount.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTotalAmount.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalAmount.Location = new System.Drawing.Point(208, 748);
+            this.lblTotalAmount.Name = "lblTotalAmount";
+            this.lblTotalAmount.Size = new System.Drawing.Size(78, 18);
+            this.lblTotalAmount.TabIndex = 11;
+            this.lblTotalAmount.Text = "label20";
             // 
             // InvScanInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 786);
+            this.Controls.Add(this.lblTotalAmount);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnEmpty);
             this.Controls.Add(this.groupBox3);
@@ -645,5 +670,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblTotalAmount;
     }
 }
