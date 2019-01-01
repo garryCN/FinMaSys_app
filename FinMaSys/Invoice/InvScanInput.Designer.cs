@@ -71,11 +71,17 @@
             this.label17 = new System.Windows.Forms.Label();
             this.tbDepart = new System.Windows.Forms.TextBox();
             this.tbAbstract = new System.Windows.Forms.TextBox();
-            this.dgvView = new System.Windows.Forms.DataGridView();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dgvInviView = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvView)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInviView)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -98,7 +104,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tbQrcode);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(25, 79);
+            this.groupBox1.Location = new System.Drawing.Point(13, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(529, 386);
             this.groupBox1.TabIndex = 0;
@@ -268,7 +274,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.tbOpenBank);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(576, 85);
+            this.groupBox2.Location = new System.Drawing.Point(570, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(502, 213);
             this.groupBox2.TabIndex = 1;
@@ -421,7 +427,7 @@
             // 
             // btSave
             // 
-            this.btSave.Location = new System.Drawing.Point(958, 427);
+            this.btSave.Location = new System.Drawing.Point(946, 403);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(120, 38);
             this.btSave.TabIndex = 3;
@@ -431,7 +437,7 @@
             // 
             // btnEmpty
             // 
-            this.btnEmpty.Location = new System.Drawing.Point(809, 427);
+            this.btnEmpty.Location = new System.Drawing.Point(819, 403);
             this.btnEmpty.Name = "btnEmpty";
             this.btnEmpty.Size = new System.Drawing.Size(120, 38);
             this.btnEmpty.TabIndex = 3;
@@ -446,7 +452,7 @@
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.tbDepart);
             this.groupBox3.Controls.Add(this.tbAbstract);
-            this.groupBox3.Location = new System.Drawing.Point(576, 305);
+            this.groupBox3.Location = new System.Drawing.Point(570, 286);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(502, 113);
             this.groupBox3.TabIndex = 8;
@@ -497,21 +503,66 @@
             this.tbAbstract.Size = new System.Drawing.Size(321, 28);
             this.tbAbstract.TabIndex = 6;
             // 
-            // dgvView
+            // groupBox4
             // 
-            this.dgvView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvView.Location = new System.Drawing.Point(25, 481);
-            this.dgvView.Name = "dgvView";
-            this.dgvView.RowTemplate.Height = 30;
-            this.dgvView.Size = new System.Drawing.Size(1071, 218);
-            this.dgvView.TabIndex = 9;
+            this.groupBox4.Controls.Add(this.dgvInviView);
+            this.groupBox4.Location = new System.Drawing.Point(13, 450);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1053, 285);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "发票信息一览";
+            // 
+            // dgvInviView
+            // 
+            this.dgvInviView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvInviView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvInviView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInviView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.dgvInviView.Location = new System.Drawing.Point(15, 33);
+            this.dgvInviView.Name = "dgvInviView";
+            this.dgvInviView.RowTemplate.Height = 30;
+            this.dgvInviView.Size = new System.Drawing.Size(1023, 239);
+            this.dgvInviView.TabIndex = 10;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "发票号";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 91;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "金额";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 75;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "税额";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 75;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "价税合计";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 91;
             // 
             // InvScanInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1119, 755);
-            this.Controls.Add(this.dgvView);
+            this.ClientSize = new System.Drawing.Size(1099, 786);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnEmpty);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btSave);
@@ -536,7 +587,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvView)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInviView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,6 +639,11 @@
         private System.Windows.Forms.TextBox tbAbstract;
         private System.Windows.Forms.Button btnAdd2;
         private System.Windows.Forms.TextBox tbDepart;
-        private System.Windows.Forms.DataGridView dgvView;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DataGridView dgvInviView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

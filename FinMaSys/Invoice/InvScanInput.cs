@@ -137,10 +137,10 @@ namespace FinMaSys.Invoice
             string Abstract = tbAbstract.Text.Trim();//摘要
             string dePatrment = CommonClass.Select_DeptID;//部门ID
             string userId = CommonClass.Common_UserID;
-            if (saleCompID!=null)
+            if (saleCompID != null)
             {
                 DataBase db = new DataBase();
-                db.ConStr =string.Format( "select id from tb_InviType where InviTypeName ='{0}'", BInvType);
+                db.ConStr = string.Format("select id from tb_InviType where InviTypeName ='{0}'", BInvType);
                 DataTable dt = db.GetDataTable();
                 if (dt.Rows.Count > 0)
                 {
@@ -154,11 +154,11 @@ namespace FinMaSys.Invoice
                     BuyCompId = dt2.Rows[0][0].ToString();
 
                 }
-                db.ConStr = string.Format("select * from tb_InviInfo where InviNum='{0}'",InvNum);
+                db.ConStr = string.Format("select * from tb_InviInfo where InviNum='{0}'", InvNum);
                 DataTable dt3 = db.GetDataTable();
-                if (dt3.Rows.Count>0)
+                if (dt3.Rows.Count > 0)
                 {
-                    MessageBox.Show(string.Format("发票{0}已存在，请勿重复录入！",InvNum));
+                    MessageBox.Show(string.Format("发票{0}已存在，请勿重复录入！", InvNum));
                 }
                 else
                 {
@@ -168,7 +168,7 @@ namespace FinMaSys.Invoice
                         db.Cmd = string.Format("INSERT INTO [tb_InviInfo] " +
                         "([InviNum],[InviCode],[InviCkCode],[InviDate],[InviAmount],[InviTax],[InviTotalAmount],[InviComSale],[InviComBuy],[InviType],[InviAbstract],[DepartmentId],[InviNowDate],[UserId])" +
                         "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')",
-                        InvNum, InvCode, InvCkCode, InvDate, Amount, TaxAmount, TotalTax, saleCompID, BuyCompId, InvTypeId, Abstract, dePatrment,dtLocal, userId);
+                        InvNum, InvCode, InvCkCode, InvDate, Amount, TaxAmount, TotalTax, saleCompID, BuyCompId, InvTypeId, Abstract, dePatrment, dtLocal, userId);
                         db.DataExcute("Insert");
                         MessageBox.Show(string.Format("发票号{0}保存成功", InvNum));
                         tbInvNum.Text = "";
@@ -180,17 +180,17 @@ namespace FinMaSys.Invoice
                         tbTotalTax.Text = "";
                         tbQrcode.Text = "";
                         tbQrcode.Focus();
-                        int index = this.dgvView.Rows.Add();
-                        this.dgvView.Rows[index].Cells[0].Value = InvNum;                        
-                        this.dgvView.Rows[index].Cells[1].Value = InvDate;
-                        this.dgvView.Rows[index].Cells[2].Value = TotalTax;
-                        this.dgvView.Rows[index].Cells[3].Value = Abstract;
-                        this.dgvView.Rows[index].Cells[4].Value = CommonClass.Select_DeptName;
-                        dgvView.Update();
+                        int index = this.dgvInviView.Rows.Add();
+                        this.dgvInviView.Rows[index].Cells[0].Value = InvNum;
+                        this.dgvInviView.Rows[index].Cells[1].Value = InvDate;
+                        this.dgvInviView.Rows[index].Cells[2].Value = TotalTax;
+                        this.dgvInviView.Rows[index].Cells[3].Value = Abstract;
+                        this.dgvInviView.Rows[index].Cells[4].Value = CommonClass.Select_DeptName;
+                        dgvInviView.Update();
                     }
                 }
-                
-                
+
+
             }
             else
             {
@@ -214,9 +214,9 @@ namespace FinMaSys.Invoice
             string inviType=cbBInvType.Text.Trim();
             //读取发票类型
             DataBase db = new DataBase();
-            db.ConStr = string.Format("select id from tb_InviType where invitypename='{0}' ",inviType);
+            db.ConStr = string.Format("select id from tb_InviType where invitypename='{0}' ", inviType);
             DataTable dt = db.GetDataTable();
-            if (dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
                 inviType = dt.Rows[0][0].ToString();
             }
@@ -266,13 +266,13 @@ namespace FinMaSys.Invoice
             DataBase db = new DataBase();
             db.ConStr = "select InviTypeName from tb_InviType";
             DataTable dt = db.GetDataTable();
-            if (dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     cbBInvType.Items.Add(dt.Rows[i][0].ToString());
                 }
-                
+
             }
         }
 
@@ -285,12 +285,12 @@ namespace FinMaSys.Invoice
             DataBase db = new DataBase();
             db.ConStr = string.Format("select RePersID '编号',rePersonName '供应商名称',rePersonOpenBank '开户行',rePersonAccNum '帐号' from tb_Contr_RePerson where rePersonName = '{0}' ", tbSaleComp.Text.Trim());
             DataTable dt = db.GetDataTable();
-            if (dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
-                tbOpenBank.Text= dt.Rows[0][2].ToString();
-                tbAccNum.Text=dt.Rows[0][3].ToString();
+                tbOpenBank.Text = dt.Rows[0][2].ToString();
+                tbAccNum.Text = dt.Rows[0][3].ToString();
                 saleCompID = dt.Rows[0][0].ToString();
-                if (tbOpenBank.Text == "" )
+                if (tbOpenBank.Text == "")
                 {
                     tbOpenBank.Text = "请点击添加单位开户行！";
                 }
@@ -301,7 +301,7 @@ namespace FinMaSys.Invoice
             }
             else
             {
-                tbSaleComp.Text =  "系统内无此单位，请点击添加！";
+                tbSaleComp.Text = "系统内无此单位，请点击添加！";
             }
         }
 
