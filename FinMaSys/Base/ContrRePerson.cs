@@ -136,7 +136,7 @@ namespace FinMaSys
             txtRePersonName.Text = "";
             cbRePersonType.Text = "";
             lblRePersonID.Text = "";
-
+            tsbQuery.Enabled = false;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -196,6 +196,7 @@ namespace FinMaSys
                     if (!string.IsNullOrEmpty(txtRePersonName.Text.Trim()) && !string.IsNullOrEmpty(cbRePersonType.Text.Trim()))
                     {
                         strCondition = "repersontype = '" + RePersonType + "' and repersonname like'%" + RePersonName + "%'";
+                        tsbQuery.Enabled = true;
                     }
                     else
                     {

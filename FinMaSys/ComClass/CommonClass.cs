@@ -176,7 +176,16 @@ namespace FinMaSys.ComClass
             }
             return true;
         }
-
+        //datagridview求和
+        public double qiuhe(DataGridView DGV, string leiming)
+        {
+            double money = 0;
+            foreach (DataGridViewRow row in DGV.Rows)
+            {
+                money += Convert.ToDouble(row.Cells[leiming].Value);//ColMoney是金额列的列名
+            }
+            return money;
+        }
         public void DwOpen(string strContrID, string strQuerySql) //定义文档下载并打开方法
         {
             DataBase dataBase = new DataBase();

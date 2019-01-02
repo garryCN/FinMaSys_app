@@ -20,6 +20,7 @@ namespace FinMaSys.Invoice
         private string saleCompID = null;//销售方单位ID
         private void InvScanInput_Load(object sender, EventArgs e)
         {
+            this.Height = panel1.Height + panel2.Height+40;
 
             cbBuyComp.SelectedIndex = 0;
             DataBase db = new DataBase();
@@ -114,7 +115,12 @@ namespace FinMaSys.Invoice
                 tbDepart.Focus();
                 return 0;
             }
-
+            if (tbTemo.Enabled && tbTemo.Text == "")
+            {
+                MessageBox.Show("科室分摊情况不得为空，请重新输入！");
+                tbTemo.Focus();
+                return 0;
+            }
             else
             {
                 return 1;
@@ -137,6 +143,8 @@ namespace FinMaSys.Invoice
             string Abstract = tbAbstract.Text.Trim();//摘要
             string dePatrment = CommonClass.Select_DeptID;//部门ID
             string userId = CommonClass.Common_UserID;
+            string strTemo = tbTemo.Text.Trim();//分摊备注
+            string strBillNum = tbBillNum.Text.Trim();//报账单号
             if (saleCompID != null)
             {
                 DataBase db = new DataBase();
@@ -164,29 +172,51 @@ namespace FinMaSys.Invoice
                 {
                     if (CkEmpty() == 1)
                     {
-                        string dtLocal = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        db.Cmd = string.Format("INSERT INTO [tb_InviInfo] " +
-                        "([InviNum],[InviCode],[InviCkCode],[InviDate],[InviAmount],[InviTax],[InviTotalAmount],[InviComSale],[InviComBuy],[InviType],[InviAbstract],[DepartmentId],[InviNowDate],[UserId])" +
-                        "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')",
-                        InvNum, InvCode, InvCkCode, InvDate, Amount, TaxAmount, TotalTax, saleCompID, BuyCompId, InvTypeId, Abstract, dePatrment, dtLocal, userId);
-                        db.DataExcute("Insert");
-                        MessageBox.Show(string.Format("发票号{0}保存成功", InvNum));
-                        tbInvNum.Text = "";
-                        tbInvCode.Text = "";
-                        tbInvCkCode.Text = "";
-                        tbInvDate.Text = "";
-                        tbAmount.Text = "";
-                        InvTaxAmount.Text = "";
-                        tbTotalTax.Text = "";
-                        tbQrcode.Text = "";
-                        tbQrcode.Focus();
+                        #region 1、存入数据库
+                            string dtLocal = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            db.Cmd = string.Format("INSERT INTO [tb_InviInfo] " +
+                            "([InviNum],[InviCode],[InviCkCode],[InviDate],[InviAmount],[InviTax],[InviTotalAmount],[InviComSale],[InviComBuy],[InviType],[InviAbstract],[DepartmentId],[InviNowDate],[UserId],[InviTemo],[BillNum])" +
+                            "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}')",
+                            InvNum, InvCode, InvCkCode, InvDate, Amount, TaxAmount, TotalTax, saleCompID, BuyCompId, InvTypeId, Abstract, dePatrment, dtLocal, userId, strTemo, strBillNum);
+                            db.DataExcute("Insert");
+                            MessageBox.Show(string.Format("发票号{0}保存成功", InvNum));
+                        #endregion
+
+                        #region 2、清空控件
+                            tbInvNum.Text = "";
+                            tbInvCode.Text = "";
+                            tbInvCkCode.Text = "";
+                            tbInvDate.Text = "";
+                            tbAmount.Text = "";
+                            InvTaxAmount.Text = "";
+                            tbTotalTax.Text = "";
+                            tbQrcode.Text = "";
+                            tbQrcode.Focus();
+                        #endregion
+
+                        #region 3、存入表格展示
                         int index = this.dgvInviView.Rows.Add();
-                        this.dgvInviView.Rows[index].Cells[0].Value = InvNum;
-                        this.dgvInviView.Rows[index].Cells[1].Value = InvDate;
-                        this.dgvInviView.Rows[index].Cells[2].Value = TotalTax;
-                        this.dgvInviView.Rows[index].Cells[3].Value = Abstract;
-                        this.dgvInviView.Rows[index].Cells[4].Value = CommonClass.Select_DeptName;
+                        this.dgvInviView.Rows[index].Cells[0].Value = Abstract; //摘要
+                        this.dgvInviView.Rows[index].Cells[1].Value = CommonClass.Select_DeptName; //科室
+                        this.dgvInviView.Rows[index].Cells[2].Value = InvNum;//发票号
+                        this.dgvInviView.Rows[index].Cells[3].Value = InvDate;//开票日期
+                        this.dgvInviView.Rows[index].Cells[4].Value = Amount;//金额
+                        this.dgvInviView.Rows[index].Cells[5].Value = TaxAmount;//税
+                        this.dgvInviView.Rows[index].Cells[6].Value = TotalTax;//价税合计
+                        this.dgvInviView.Rows[index].Cells[7].Value = tbSaleComp.Text;//销售单位
                         dgvInviView.Update();
+
+                        #endregion
+                        #region 4、表格内数量、金额统计
+                        if (dgvInviView.Rows.Count>0)
+                        {
+                            CommonClass commonClass = new CommonClass();
+                            lblTotalAmount.Text= commonClass.qiuhe(dgvInviView, "价税合计").ToString();
+                            lblQuantity.Text = (dgvInviView.Rows.Count-1).ToString();
+                        }
+                        #endregion
+
+                    
                     }
                 }
 
@@ -230,8 +260,7 @@ namespace FinMaSys.Invoice
             tbAmount.Text = InvProcess.Amount;
             double tax = Math.Round(Double.Parse(tbAmount.Text.Trim()) * taxRate, 2);
             InvTaxAmount.Text = tax.ToString();
-            tbTotalTax.Text = (tax + Double.Parse(tbAmount.Text.Trim())).ToString();
-            tbQrcode.SelectAll();
+            tbTotalTax.Text = (tax + Double.Parse(tbAmount.Text.Trim())).ToString();          
 
         }
 
@@ -336,7 +365,37 @@ namespace FinMaSys.Invoice
             dpt.ShowDialog();            
             tbDepart.Text = CommonClass.Select_DeptName;
             string deptId=  CommonClass.Select_DeptID;
+            if (tbDepart.Text.Trim() == "全院公用")
+            {
+                tbTemo.Enabled = true;
+            }
+            else
+            {
+                tbTemo.Enabled = false;
 
+            }
+
+        }
+
+        private void btnEmptyDgv_Click(object sender, EventArgs e)
+        {
+            dgvInviView.DataSource = null;
+        }
+
+        private void InvTaxAmount_TextChanged(object sender, EventArgs e)
+        {
+            if (InvTaxAmount.Text.Trim()!="" && tbAmount.Text.Trim()!="")
+            {
+                double tax = double.Parse(InvTaxAmount.Text.Trim());
+                tbTotalTax.Text = (tax + Double.Parse(tbAmount.Text.Trim())).ToString();
+            }
+
+
+        }
+
+        private void tbTemo_TextChanged(object sender, EventArgs e)
+        {
+            tbAbstract.Text = CommonClass.Select_DeptName+ "(科室分摊)";
         }
     }
 }

@@ -159,7 +159,7 @@
             this.txtRePersonName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRePersonName.Name = "txtRePersonName";
             this.txtRePersonName.Size = new System.Drawing.Size(295, 28);
-            this.txtRePersonName.TabIndex = 5;
+            this.txtRePersonName.TabIndex = 0;
             // 
             // cbRePersonType
             // 
@@ -171,7 +171,7 @@
             this.cbRePersonType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbRePersonType.Name = "cbRePersonType";
             this.cbRePersonType.Size = new System.Drawing.Size(259, 26);
-            this.cbRePersonType.TabIndex = 6;
+            this.cbRePersonType.TabIndex = 1;
             // 
             // panel1
             // 
@@ -223,7 +223,7 @@
             this.tbAccNum.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbAccNum.Name = "tbAccNum";
             this.tbAccNum.Size = new System.Drawing.Size(259, 28);
-            this.tbAccNum.TabIndex = 5;
+            this.tbAccNum.TabIndex = 3;
             // 
             // tbOpenBank
             // 
@@ -231,7 +231,7 @@
             this.tbOpenBank.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbOpenBank.Name = "tbOpenBank";
             this.tbOpenBank.Size = new System.Drawing.Size(295, 28);
-            this.tbOpenBank.TabIndex = 5;
+            this.tbOpenBank.TabIndex = 2;
             // 
             // label2
             // 
