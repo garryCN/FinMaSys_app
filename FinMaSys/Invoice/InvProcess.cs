@@ -39,37 +39,57 @@ namespace FinMaSys.Invoice
             Amount = null;
             InvDate = null;
             InvCkCode = null;
-            string[] InvQrcodes = InvQrcode.Split(new char[] { '，'}); ;          
-            if (InvQrcodes.Length < 7)
+            string[] InvQrcodes = InvQrcode.Split(new char[] { '，' }); ;
+         
+            if (InvQrcodes.Length < 7 )
             {
-               InvQrcodes = InvQrcode.Split(new char[] { ',' }); ;
-                
+                InvQrcodes = InvQrcode.Split(new char[] { ',' }); ;
+
             }
+            MessageBox.Show(InvQrcodes.Length.ToString());
+                    try
+                    {
+                        switch (InvType)
+                        {
+                            case "1": //增值税普通发票、电子发票
+                                InvCode = InvQrcodes[2];
+                                InvNum = InvQrcodes[3];
+                                Amount = InvQrcodes[4];
+                                InvDate = InvQrcodes[5];
+                                InvCkCode = InvQrcodes[6];
+                                break;
+                            case "2"://增值税专用发票
+                                InvCode = InvQrcodes[2];
+                                InvNum = InvQrcodes[3];
+                                Amount = InvQrcodes[4];
+                                InvDate = InvQrcodes[5];
+                                InvCkCode = "空";
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("暂时不支持该类型发票，请选择手工录入！");
+                        InvCode = "";
+                        InvNum = "";
+                        Amount = "";
+                        InvDate = "";
+                        InvCkCode = "";
+            }
+                
+            
+
 
             //foreach (var item in InvQrcodes)
             //{
             //    MessageBox.Show(item);
             //}
-            switch (InvType)
-            {
-                case "1": //增值税普通发票
-                    InvCode = InvQrcodes[2];
-                    InvNum = InvQrcodes[3];
-                    Amount = InvQrcodes[4];
-                    InvDate = InvQrcodes[5];
-                    InvCkCode = InvQrcodes[6];
-                    break;
-                case "2"://增值税专用发票
-                    InvCode = InvQrcodes[2];
-                    InvNum = InvQrcodes[3];
-                    Amount = InvQrcodes[4];
-                    InvDate = InvQrcodes[5];
-                    InvCkCode = "空";
-                    break;
-                default:
-                    break;
-            }
-
+      
+      
 
         }
             #endregion

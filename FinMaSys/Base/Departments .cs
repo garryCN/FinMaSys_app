@@ -43,6 +43,7 @@ namespace FinMaSys
             txtDeptName.Text = "";
             cbDeptType.Text = "";
             lblDeptID.Text = "";
+            tsbQuery.Enabled = false;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -86,6 +87,7 @@ namespace FinMaSys
                     if (!string.IsNullOrEmpty(txtDeptName.Text.Trim()) && !string.IsNullOrEmpty(cbDeptType.Text.Trim()))
                     {
                         strCondition = "deptProp = '" + strDeptType + "' and deptName like'%" + strDeptName + "%'";
+                        tsbQuery.Enabled = true;
                     }
                     else
                     {

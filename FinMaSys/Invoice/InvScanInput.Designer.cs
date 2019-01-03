@@ -32,8 +32,13 @@
             this.btnEmptyDgv = new System.Windows.Forms.Button();
             this.btnEmpty = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbBillNum = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tbTemo = new System.Windows.Forms.TextBox();
             this.btnAdd2 = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tbDepart = new System.Windows.Forms.TextBox();
             this.tbAbstract = new System.Windows.Forms.TextBox();
@@ -44,7 +49,6 @@
             this.cbBInvType = new System.Windows.Forms.ComboBox();
             this.cbBuyComp = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.tbSaleComp = new System.Windows.Forms.TextBox();
             this.btnQuery = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -75,11 +79,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblQuantity = new System.Windows.Forms.Label();
             this.lblTotalAmount = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.dgvInviView = new System.Windows.Forms.DataGridView();
-            this.label20 = new System.Windows.Forms.Label();
-            this.lblQuantity = new System.Windows.Forms.Label();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,11 +92,6 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.价税合计 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbTemo = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.tbBillNum = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -162,6 +161,33 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "附加信息";
             // 
+            // tbBillNum
+            // 
+            this.tbBillNum.Location = new System.Drawing.Point(113, 60);
+            this.tbBillNum.Name = "tbBillNum";
+            this.tbBillNum.Size = new System.Drawing.Size(321, 28);
+            this.tbBillNum.TabIndex = 13;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(110, 126);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(312, 16);
+            this.label22.TabIndex = 12;
+            this.label22.Text = "涉及到科室分摊，科室必须选择\"全院公用\"";
+            // 
+            // tbTemo
+            // 
+            this.tbTemo.Enabled = false;
+            this.tbTemo.Location = new System.Drawing.Point(51, 177);
+            this.tbTemo.Name = "tbTemo";
+            this.tbTemo.Size = new System.Drawing.Size(445, 28);
+            this.tbTemo.TabIndex = 11;
+            this.tbTemo.TextChanged += new System.EventHandler(this.tbTemo_TextChanged);
+            // 
             // btnAdd2
             // 
             this.btnAdd2.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -173,6 +199,15 @@
             this.btnAdd2.UseVisualStyleBackColor = true;
             this.btnAdd2.Click += new System.EventHandler(this.btnAdd2_Click);
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 63);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(80, 18);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "报账单号";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -181,6 +216,17 @@
             this.label18.Size = new System.Drawing.Size(44, 18);
             this.label18.TabIndex = 0;
             this.label18.Text = "摘要";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label21.Location = new System.Drawing.Point(51, 151);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(323, 18);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "分摊科室和金额（不同科室以\",\"分隔）";
             // 
             // label17
             // 
@@ -227,7 +273,7 @@
             this.tBTax.TabIndex = 3;
             this.tBTax.Text = "16";
             this.tBTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tBTax.TextChanged += new System.EventHandler(this.tBTax_TextChanged);
+            this.tBTax.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tBTax_KeyDown);
             // 
             // label12
             // 
@@ -273,7 +319,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.tbSaleComp);
             this.groupBox2.Controls.Add(this.btnQuery);
             this.groupBox2.Controls.Add(this.label7);
@@ -287,15 +332,6 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "销售方基本信息";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(110, 33);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(206, 18);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "请输入单位全称进行查询";
             // 
             // tbSaleComp
             // 
@@ -582,6 +618,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "发票信息一览";
             // 
+            // lblQuantity
+            // 
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblQuantity.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblQuantity.ForeColor = System.Drawing.Color.Red;
+            this.lblQuantity.Location = new System.Drawing.Point(172, 295);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(0, 18);
+            this.lblQuantity.TabIndex = 13;
+            // 
             // lblTotalAmount
             // 
             this.lblTotalAmount.AutoSize = true;
@@ -592,6 +639,15 @@
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.Size = new System.Drawing.Size(0, 18);
             this.lblTotalAmount.TabIndex = 13;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(32, 295);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(134, 18);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "以上项目共计：";
             // 
             // label19
             // 
@@ -621,26 +677,6 @@
             this.dgvInviView.RowTemplate.Height = 30;
             this.dgvInviView.Size = new System.Drawing.Size(1023, 239);
             this.dgvInviView.TabIndex = 10;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(32, 295);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(134, 18);
-            this.label20.TabIndex = 12;
-            this.label20.Text = "以上项目共计：";
-            // 
-            // lblQuantity
-            // 
-            this.lblQuantity.AutoSize = true;
-            this.lblQuantity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblQuantity.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblQuantity.ForeColor = System.Drawing.Color.Red;
-            this.lblQuantity.Location = new System.Drawing.Point(172, 295);
-            this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(0, 18);
-            this.lblQuantity.TabIndex = 13;
             // 
             // Column6
             // 
@@ -694,53 +730,6 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 116;
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label21.Location = new System.Drawing.Point(51, 151);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(323, 18);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "分摊科室和金额（不同科室以\",\"分隔）";
-            // 
-            // tbTemo
-            // 
-            this.tbTemo.Enabled = false;
-            this.tbTemo.Location = new System.Drawing.Point(51, 177);
-            this.tbTemo.Name = "tbTemo";
-            this.tbTemo.Size = new System.Drawing.Size(445, 28);
-            this.tbTemo.TabIndex = 11;
-            this.tbTemo.TextChanged += new System.EventHandler(this.tbTemo_TextChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("宋体", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(110, 126);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(312, 16);
-            this.label22.TabIndex = 12;
-            this.label22.Text = "涉及到科室分摊，科室必须选择\"全院公用\"";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(12, 63);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(80, 18);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "报账单号";
-            // 
-            // tbBillNum
-            // 
-            this.tbBillNum.Location = new System.Drawing.Point(113, 60);
-            this.tbBillNum.Name = "tbBillNum";
-            this.tbBillNum.Size = new System.Drawing.Size(321, 28);
-            this.tbBillNum.TabIndex = 13;
-            // 
             // InvScanInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -788,7 +777,6 @@
         private System.Windows.Forms.ComboBox cbBInvType;
         private System.Windows.Forms.ComboBox cbBuyComp;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox tbSaleComp;
         private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.Label label7;

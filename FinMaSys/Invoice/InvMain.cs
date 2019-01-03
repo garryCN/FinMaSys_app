@@ -28,6 +28,7 @@ namespace FinMaSys.Invoice
             {
                 dgvInviMain.DataSource = dt;
             }
+            this.Height = panel1.Height + panel2.Height + toolStrip1.Height + 40;
 
         }
 

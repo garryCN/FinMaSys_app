@@ -215,7 +215,7 @@ namespace FinMaSys.Invoice
                             lblQuantity.Text = (dgvInviView.Rows.Count-1).ToString();
                         }
                         #endregion
-
+                        tbQrcode.Focus();
                     
                     }
                 }
@@ -258,26 +258,27 @@ namespace FinMaSys.Invoice
             tbInvCkCode.Text = InvProcess.InvCkCode;
             tbInvDate.Text = InvProcess.InvDate;
             tbAmount.Text = InvProcess.Amount;
-            double tax = Math.Round(Double.Parse(tbAmount.Text.Trim()) * taxRate, 2);
-            InvTaxAmount.Text = tax.ToString();
-            tbTotalTax.Text = (tax + Double.Parse(tbAmount.Text.Trim())).ToString();          
-
-        }
-
-        private void tBTax_TextChanged(object sender, EventArgs e)
-        {
-            if (tbQrcode.Text.Trim()!="")
+            if (tbAmount.Text.Trim()!="" )
             {
-                btnRead_Click(null, null);
+                double tax = Math.Round(Double.Parse(tbAmount.Text.Trim()) * taxRate, 2);
+                InvTaxAmount.Text = tax.ToString();
+                tbTotalTax.Text = (tax + Double.Parse(tbAmount.Text.Trim())).ToString();
             }
-            
+            tbQrcode.Focus();
+            tbQrcode.SelectAll();
 
         }
+
 
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
-            tbQrcode.SelectAll();
-            CkEmpty();
+            tbQrcode.Focus();
+            if (tbQrcode.Text.Trim()!="")
+            {
+                tbQrcode.SelectAll();
+
+            }
+
         }
 
         private void btnEmpty_Click(object sender, EventArgs e)
@@ -379,7 +380,8 @@ namespace FinMaSys.Invoice
 
         private void btnEmptyDgv_Click(object sender, EventArgs e)
         {
-            dgvInviView.DataSource = null;
+            dgvInviView.Rows.Clear();
+            
         }
 
         private void InvTaxAmount_TextChanged(object sender, EventArgs e)
@@ -396,6 +398,14 @@ namespace FinMaSys.Invoice
         private void tbTemo_TextChanged(object sender, EventArgs e)
         {
             tbAbstract.Text = CommonClass.Select_DeptName+ "(科室分摊)";
+        }
+
+        private void tBTax_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (tbQrcode.Text.Trim() != "")
+            {
+                btnRead_Click(null, null);
+            }
         }
     }
 }

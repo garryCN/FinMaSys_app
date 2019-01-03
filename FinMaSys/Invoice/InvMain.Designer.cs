@@ -333,6 +333,7 @@
             this.dgvInviMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvInviMain.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvInviMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInviMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInviMain.Location = new System.Drawing.Point(0, 0);
             this.dgvInviMain.Name = "dgvInviMain";
             this.dgvInviMain.RowTemplate.Height = 30;
